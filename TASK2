@@ -1,0 +1,41 @@
+def calculate(num1, num2, operator):
+ 
+  if operator == "+":
+    return num1 + num2
+  elif operator == "-":
+    return num1 - num2
+  elif operator == "*":
+    return num1 * num2
+  elif operator == "/":
+    if num2 == 0:
+      print("Error: Cannot divide by zero.")
+      return None
+    else:
+      return num1 / num2
+  else:
+    print("Invalid operator. Please use +, -, *, or /.")
+    return None
+
+while True:
+  
+  try:
+    num1 = float(input("Enter the first number: "))
+    num2 = float(input("Enter the second number: "))
+  except ValueError:
+    print("Invalid input. Please enter numbers only.")
+    continue
+
+  
+  operator = input("Choose an operation (+, -, *, /): ")
+
+  
+  result = calculate(num1, num2, operator)
+  if result is not None:
+    print("Result:", result)
+
+  
+  choice = input("Do you want to perform another calculation? (y/n): ")
+  if choice.lower() != "y":
+    break
+
+print("Thank you for using the calculator!")
