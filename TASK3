@@ -1,0 +1,50 @@
+import random
+import string
+
+def generate_password(length, lowercase=True, uppercase=True, digits=True, punctuation=True):
+ 
+  
+  characters = ""
+  if lowercase:
+    characters += string.ascii_lowercase
+  if uppercase:
+    characters += string.ascii_uppercase
+  if digits:
+    characters += string.digits
+  if punctuation:
+    characters += string.punctuation
+
+  password = ''.join(random.choice(characters) for i in range(length))
+  return password
+
+def main():
+  while True:
+    try:
+        length = int(input("Enter desired password length (minimum 8 characters): "))
+      if length < 8:
+        print("Password length must be at least 8 characters.")
+        continue
+    except ValueError:
+      print("Invalid input. Please enter a number.")
+      continue
+
+  
+    include_lowercase = input("Include lowercase letters (y/n)? ").lower() == "y"
+    include_uppercase = input("Include uppercase letters (y/n)? ").lower() == "y"
+    include_digits = input("Include digits (y/n)? ").lower() == "y"
+    include_punctuation = input("Include punctuation characters (y/n)? ").lower() == "y"
+
+    password = generate_password(length, include_lowercase, include_uppercase, include_digits, include_punctuation)
+
+
+    print(f"\nYour generated password is: {password}")
+
+  
+    choice = input("Do you want to generate another password? (y/n): ").lower()
+    if choice != "y":
+      break
+
+  print("\nThanks for using the password generator!")
+
+if __name__ == "__main__":
+  main()
